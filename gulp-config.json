@@ -1,0 +1,24 @@
+{
+	"src": {
+		"path": "app/src/",
+		"files": {			
+			"ts": "./app/**/*.ts",
+			"html": "./app/**/*.htm'",
+			"css": "./app/**/*.css",
+			"other": "./app/**/*!(.ts)",
+			"all":	"./app/**/*.*"
+		}
+		
+	},
+	"build": {
+		"path": ".build/",
+		"routes": {
+                "/jspm_packages": "jspm_packages"
+        }				
+	},
+	"tsd": {		
+        "command": "reinstall",
+		"latest": false,
+        "config": "./tsd.json"		
+	}
+}
