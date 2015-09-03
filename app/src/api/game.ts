@@ -27,7 +27,12 @@ export class Game{
     private static components = {};
     public static component(Component: IComponentClass) {
         var component = new Component();
-        this.components['key'] = component;
+        
+        // get the name of the class
+        var cstr = Component.prototype.constructor.toString();
+        var key = cstr.substring(9, cstr.indexOf('('));
+        
+        this.components[key] = component;
     } 
     
     public static update(){        
