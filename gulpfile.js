@@ -2,16 +2,28 @@ var config = require('./gulp-config.json');
 var gulp = require('gulp');
 var ts = require('gulp-typescript');
 var merge = require('merge2');
-
 var browserSync = require('browser-sync').create();
 var tsProject = ts.createProject('tsconfig.json');
- 
 var tsd = require('gulp-tsd'); 
-gulp.task('tsd', function (callback) {
-    tsd(config.tsd, callback);
-});
 
-function build() {
+gulp.task('tsd', tsd_task);
+gulp.task('build', build_task);
+gulp.task('dev',['tsd','build'], dev_task);
+
+function tsd_task(callback) { tsd(config.tsd, callback); }
+function dev_task() {
+    browserSync.init({
+        server: {
+            baseDir: config.build.path,
+            routes: config.build.routes
+        }
+    });
+    gulp.watch(config.src.files.all).on('change', function() {
+        build_task();
+        browserSync.reload();        
+    });    
+}
+function build_task() {
     var tsResult = gulp.src( config.src.files.ts ).pipe(ts(tsProject));
     var other = gulp.src( config.src.files.other );
         
@@ -22,18 +34,3 @@ function build() {
         gulp.src( 'config.js').pipe(gulp.dest( config.build.path))
     ]);    
 }
-gulp.task('build', build);
-
-// Static server
-gulp.task('dev',['tsd','build'], function() {
-    browserSync.init({
-        server: {
-            baseDir: config.build.path,
-            routes: config.build.routes
-        }
-    });
-    gulp.watch(config.src.files.all).on('change', function() {
-        build();
-        browserSync.reload();        
-    });
-});
