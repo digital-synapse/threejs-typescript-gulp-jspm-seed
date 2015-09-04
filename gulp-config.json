@@ -1,12 +1,12 @@
 {
 	"src": {
-		"path": "app/src/",
+		"path": "src/app/",
 		"files": {			
-			"ts": "./app/**/*.ts",
-			"html": "./app/**/*.htm'",
-			"css": "./app/**/*.css",
-			"other": "./app/**/*!(.ts)",
-			"all":	"./app/**/*.*"
+			"ts": "./src/**/*.ts",
+			"html": "./src/**/*.htm'",
+			"css": "./src/**/*.css",
+			"other": "./src/**/*!(.ts)",
+			"all":	"./src/**/*.*"
 		}
 		
 	},
