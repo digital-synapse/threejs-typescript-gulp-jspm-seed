@@ -1,3 +1,4 @@
+///<reference path="../typings/tsd.d.ts"/>;
 import * as THREE from 'three';
 import {Game, IComponent} from './api/game';
 
