@@ -1,5 +1,7 @@
 import {Game}  from './api/game';
-import HelloWorld from './hello-world';
+import CubicGrid from './cubic-grid';
+import Grid from './grid';
 
 Game.init();
-Game.component(HelloWorld);
+Game.component(Grid);
+Game.component(CubicGrid);

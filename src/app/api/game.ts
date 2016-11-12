@@ -15,11 +15,25 @@ export class Game{
     public static renderer;
         
     public static init(){
-        this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000 );
-        this.camera.position.z = 500;        
-        this.scene = new THREE.Scene();        
+
+        //Scene
+        this.scene = new THREE.Scene()
+
+        //Camera
+        let aspect = window.innerWidth / window.innerHeight;
+        let d = 10;
+        this.camera = new THREE.OrthographicCamera( - d * aspect, d * aspect, d, - d, 1, 1000 );
+        this.camera.position.set( 20, 20, 20 ); // all components equal
+        this.camera.lookAt( this.scene.position ); // or the origin
+
+        // light
+        var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 ); // soft white light
+        this.scene.add( light );
+
+        //Render
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize( window.innerWidth, window.innerHeight ) ;
+
         document.body.appendChild( this.renderer.domElement ) ;
         animation();   
     } 
