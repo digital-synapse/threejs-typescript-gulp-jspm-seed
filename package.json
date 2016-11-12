@@ -19,7 +19,6 @@
     "typescript": "^1.5.3"
   },
   "jspm": {
-    "directories": {},
     "dependencies": {
       "three": "npm:three@^0.71.1"
     },

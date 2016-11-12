@@ -20,7 +20,6 @@ export class Game{
         this.scene = new THREE.Scene();        
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize( window.innerWidth, window.innerHeight ) ;
-        
         document.body.appendChild( this.renderer.domElement ) ;
         animation();   
     } 
@@ -28,7 +27,7 @@ export class Game{
     private static components = {};
     public static component(Component: IComponentClass) {
         var component = new Component();
-        
+
         // get the name of the class
         var cstr = Component.prototype.constructor.toString();
         var key = cstr.substring(9, cstr.indexOf('('));
@@ -36,7 +35,7 @@ export class Game{
         this.components[key] = component;
     } 
     
-    public static update(){        
+    public static update(){
         for (var prop in this.components){
             var component = this.components[prop];
             component.update();
@@ -48,7 +47,6 @@ export class Game{
 // main logic/render loop
 function animation() {
     window.requestAnimationFrame( animation );
-    Game.update();    
-} 
-Game.init()
+    Game.update();
+}
 
