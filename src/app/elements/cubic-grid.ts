@@ -1,6 +1,6 @@
-///<reference path="../typings/tsd.d.ts"/>;
+///<reference path="../../typings/tsd.d.ts"/>;
 import * as THREE from 'three';
-import {Game, IComponent} from './api/game';
+import {Game, IComponent} from '../game/game';
 
 export default class CubicGrid implements IComponent {
 	
