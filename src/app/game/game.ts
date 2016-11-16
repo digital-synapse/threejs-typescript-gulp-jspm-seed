@@ -15,12 +15,25 @@ export class Game{
     public static renderer;
         
     public static init(){
-        this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000 );
-        this.camera.position.z = 500;        
-        this.scene = new THREE.Scene();        
+
+        //Scene
+        this.scene = new THREE.Scene()
+
+        //Camera
+        let aspect = window.innerWidth / window.innerHeight;
+        let d = 10;
+        this.camera = new THREE.OrthographicCamera( - d * aspect, d * aspect, d, - d, 1, 1000 );
+        this.camera.position.set( 20, 20, 20 ); // all components equal
+        this.camera.lookAt( this.scene.position ); // or the origin
+
+        // light
+        var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 ); // soft white light
+        this.scene.add( light );
+
+        //Render
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize( window.innerWidth, window.innerHeight ) ;
-        
+
         document.body.appendChild( this.renderer.domElement ) ;
         animation();   
     } 
@@ -28,7 +41,7 @@ export class Game{
     private static components = {};
     public static component(Component: IComponentClass) {
         var component = new Component();
-        
+
         // get the name of the class
         var cstr = Component.prototype.constructor.toString();
         var key = cstr.substring(9, cstr.indexOf('('));
@@ -36,7 +49,7 @@ export class Game{
         this.components[key] = component;
     } 
     
-    public static update(){        
+    public static update(){
         for (var prop in this.components){
             var component = this.components[prop];
             component.update();
@@ -48,7 +61,6 @@ export class Game{
 // main logic/render loop
 function animation() {
     window.requestAnimationFrame( animation );
-    Game.update();    
-} 
-Game.init()
+    Game.update();
+}
 

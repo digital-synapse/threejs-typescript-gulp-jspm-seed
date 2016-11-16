@@ -19,7 +19,6 @@
     "typescript": "^1.5.3"
   },
   "jspm": {
-    "directories": {},
     "dependencies": {
       "three": "npm:three@^0.71.1"
     },
@@ -28,5 +27,8 @@
       "babel-runtime": "npm:babel-runtime@^5.8.20",
       "core-js": "npm:core-js@^1.1.0"
     }
+  },
+  "dependencies": {
+    "@types/es6-promise": "0.0.32"
   }
 }
